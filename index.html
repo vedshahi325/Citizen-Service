@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Service Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <script>
+        // Check if user is logged in
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Government Logo" class="logo">
+                <h1>Citizen Service</h1>
+            </div>
+            <div class="service-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#" data-service="Aadhaar"><i class="fas fa-id-card"></i> Aadhaar Card</a></li>
+                    <li><a href="#" data-service="PAN Card"><i class="fas fa-file-alt"></i> PAN Card</a></li>
+                    <li><a href="#" data-service="Passport"><i class="fas fa-passport"></i> Passport</a></li>
+                    <li><a href="#" data-service="Driving License"><i class="fas fa-car"></i> Driving License</a></li>
+                    <li><a href="#" data-service="Voter ID"><i class="fas fa-vote-yea"></i> Voter ID</a></li>
+                    <li><a href="#" data-service="Municipal Services"><i class="fas fa-city"></i> Municipal Services</a></li>
+                    <li><a href="#" data-service="Welfare Schemes"><i class="fas fa-hand-holding-heart"></i> Welfare Schemes</a></li>
+                    <li><a href="#" data-service="Complaint Registration"><i class="fas fa-exclamation-circle"></i> Complaint Registration</a></li>
+                </ul>
+            </div>
+            <div class="footer">
+                <p>© 2023 Government Services</p>
+                <p>Powered by AI</p>
+                <button id="logoutButton" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <header>
+                <h1>Citizen Service Chatbot</h1>
+                <p>Welcome, <span id="userDisplay"></span></p>
+            </header>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <i class="fas fa-robot"></i>
+                        <span>Government Assistant</span>
+                    </div>
+                    <div class="chat-actions">
+                        <button id="clearChat" title="Clear Chat"><i class="fas fa-trash"></i></button>
+                        <button id="toggleTheme" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    </div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <div class="message-content">
+                            <div class="bot-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-text">
+                                <h3>Hello! I'm your Citizen Service Assistant.</h3>
+                                <p>How can I help you today? You can ask me about:</p>
+                                <div class="service-grid">
+                                    <div class="service-card" data-service="Aadhaar">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>Aadhaar Card</span>
+                                    </div>
+                                    <div class="service-card" data-service="PAN Card">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>PAN Card</span>
+                                    </div>
+                                    <div class="service-card" data-service="Passport">
+                                        <i class="fas fa-passport"></i>
+                                        <span>Passport</span>
+                                    </div>
+                                    <div class="service-card" data-service="Driving License">
+                                        <i class="fas fa-car"></i>
+                                        <span>Driving License</span>
+                                    </div>
+                                    <div class="service-card" data-service="Voter ID">
+                                        <i class="fas fa-vote-yea"></i>
+                                        <span>Voter ID</span>
+                                    </div>
+                                    <div class="service-card" data-service="Municipal Services">
+                                        <i class="fas fa-city"></i>
+                                        <span>Municipal Services</span>
+                                    </div>
+                                    <div class="service-card" data-service="Welfare Schemes">
+                                        <i class="fas fa-hand-holding-heart"></i>
+                                        <span>Welfare Schemes</span>
+                                    </div>
+                                    <div class="service-card" data-service="Complaint Registration">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>Complaint Registration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your question here...">
+                    <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="config.js"></script>
+    <script src="services.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Display username
+        document.getElementById('userDisplay').textContent = localStorage.getItem('username') || 'User';
+
+        // Handle logout
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html> 
